@@ -1,13 +1,33 @@
 # Landing Page Project
 
-## Table of Contents
+This is the Landing Page  project readme.
 
-* [Instructions](#instructions)
+## Description
 
-## Instructions
+- The code in this repository is past of the last project of the Frontend Web Development Fundamentals Nanodegree Program from OneTen Scholarship.
+- The project requires you to build a multi-section landing page, with a dynamically updating navigational menu based on the amount of content that is added to the page using JavaScript.
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## Languages Used
 
-To get started, open `js/app.js` and start building out the app's functionality
+- HTML
+- CSS
+- JavaScript
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+## Functionalities
+
+- Dynamic navbar based on the content using Javascript
+- Dynamic active class for sections 
+- Section is active when viewed
+- Scrolling up and smooth scrolling effect
+
+
+## Other sources
+
+- Start template code from Udacity. Source: https://github.com/udacity/fend/tree/refresh-2019/projects/landing-page
+- Scroll up button template from 3wSchools Source: https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+
+## How this project works
+
+- Open index.html on your browser
+- You will see the navbar will show up and hide according to scrolling.
+- You can navigate to different sections along the page and click the button to go up when you are done.
