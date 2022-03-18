@@ -30,5 +30,6 @@ This is the Landing Page  project readme.
 ## How this project works
 
 - Open index.html on your browser
-- You will see the navbar will show up and hide according to scrolling.
-- You can navigate to different sections along the page and click the button to go up when you are done.
+- You will see the dynamic navbar with the sections
+- You can navigate to different sections, the correct section will be active according to scrolling
+- Click the button UP to go to the top of the page when you are done.
