@@ -25,6 +25,7 @@ This is the Landing Page  project readme.
 
 - Start template code from Udacity. Source: https://github.com/udacity/fend/tree/refresh-2019/projects/landing-page
 - Scroll up button template from 3wSchools Source: https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+- Intersection Observer API https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 
 ## How this project works
 
