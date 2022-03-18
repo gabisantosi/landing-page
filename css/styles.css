@@ -7,7 +7,14 @@
  * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
  *
 */
+*{
+    padding: 0;
+    margin: 0;
+}
 
+html {
+    scroll-behavior: smooth;
+}
 
 /* ---- Base Rules ---- */
 body {
@@ -23,12 +30,12 @@ body {
 h1 {
     font-family: 'Fira Sans', sans-serif;
     font-size: 3em;
-    margin: 2em 1rem;
+    margin: 2.5em 1rem;
 }
 
 @media only screen and (min-width: 35em){
     h1 {
-        font-size: 7em;
+        font-size: 5em;
         margin: 2em 4rem 1em;
     }
 }
@@ -66,17 +73,18 @@ section {
 /* Navigation Styles*/
 .navbar__menu ul {
     padding-left: 0;
-    margin: 0;
+    margin: 0%;
     text-align: right;
 }
 
 .navbar__menu li {
-    display: inline-block;
+    display: inline-flex;
+    
 }
 
 .navbar__menu .menu__link {
-    display: block;
-    padding: 1em;
+    display: inline-block;
+    padding: 1em 0.5em;
     font-weight: bold;
     text-decoration: none;
     color: #000;
