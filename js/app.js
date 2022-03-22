@@ -54,7 +54,7 @@ let isInViewport = sec => {
 // build the nav
 //function to build navbar
 let buildNav = (secList, navList) => {
-  //for..of loop to create list item for every item in the secList and attach to the given navList
+  //for..of loop to create list item for every item in the secList and attach to the navList
   for (const sec of secList) {
     const newElement = `<li data-link=${sec.getAttribute(
       'id'
@@ -67,10 +67,9 @@ let buildNav = (secList, navList) => {
   }
 };
 
-// Add class 'your-active-class' to section when near top of viewport
+// Add class 'your-active-class' to section when on viewport
 let setActiveSection = secList => {
   for (const sec of secList) {
-    //classical if-else for readability
     if (isInViewport(sec)) {
       sec.classList.toggle('your-active-class', true);
       document
