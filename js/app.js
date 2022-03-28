@@ -53,9 +53,9 @@ let isInViewport = sec => {
  */
 // build the nav
 //function to build navbar
-let buildNav = (secList, navList) => {
+let buildNav = (sectionList, navBarList) => {
   //for..of loop to create list item for every item in the secList and attach to the navList
-  for (const sec of secList) {
+  for (const sec of sectionList) {
     const newElement = `<li data-link=${sec.getAttribute(
       'id'
     )} class="menu__link">
@@ -63,7 +63,7 @@ let buildNav = (secList, navList) => {
       'data-nav'
     )}</a>
           </li>`;
-    navList.insertAdjacentHTML('beforeend', newElement);
+    navBarList.insertAdjacentHTML('beforeend', newElement);
   }
 };
 
@@ -94,28 +94,24 @@ let setActiveSection = secList => {
 window.onload = () => buildNav(sectionList, navBarList);
 
 // Scroll smooth to section on link click
-const navLinks = document.querySelectorAll('#navbar__list a');
 
-navLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault(); // prevent the page from reloading (a default behavior when a link is clicked)
-    const id = event.target.hasAttribute('data-link')
-      ? event.target
-      : event.target.parentElement; // get id from href value of the link
-
+navBarList.addEventListener('click', e => {
+  e.preventDefault(); // prevent the page from reloading (a default behavior when a link is clicked)
+  const parent = e.target.hasAttribute('data-link')
+    ? e.target
+    : e.target.parentElement; // get id from href value of the link
+  
     // get the reference to the corresponding section
-    const targetSection = document.querySelector(
-      `#${id.getAttribute('data-link')}`
-    ); // use `.querySelector(id)` to select the corresponding section
-
-    // add smooth scrolling feature
-    targetSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-      inline: 'nearest',
-    });
+  const targetSection = document.getElementById(parent.dataset.link); // use `.querySelector(id)` to select the corresponding section
+  // add smooth scrolling feature
+ 
+  targetSection.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+    inline: 'nearest',
   });
 });
+
 // When the user scrolls down 30px from the top of the document, show the button
 function scrollFunction () {
   if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
