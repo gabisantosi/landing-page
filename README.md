@@ -32,4 +32,4 @@ This is the Landing Page  project readme.
 - Open index.html on your browser
 - You will see the dynamic navbar with the sections
 - You can navigate to different sections, the correct section will be active according to scrolling
-- Click the button UP to go to the top of the page when you are done.
+- Click the button TOP to go to the top of the page when you are done.
