@@ -67,6 +67,7 @@ let buildNav = (sectionList, navBarList) => {
   }
 };
 
+
 // Add class 'your-active-class' to section when on viewport
 let setActiveSection = secList => {
   for (const sec of secList) {
@@ -75,6 +76,7 @@ let setActiveSection = secList => {
       document
         .querySelector(`[data-link="${sec.getAttribute('id')}"]`)
         .classList.toggle('your-active-class', true);
+        document.appendChild("your-active-class");
     } else {
       sec.classList.toggle('your-active-class', false);
       document
@@ -89,9 +91,9 @@ let setActiveSection = secList => {
  * Begin Events
  *
  */
-
 // Build menu
 window.onload = () => buildNav(sectionList, navBarList);
+
 
 // Scroll smooth to section on link click
 
@@ -104,11 +106,11 @@ navBarList.addEventListener('click', e => {
     // get the reference to the corresponding section
   const targetSection = document.getElementById(parent.dataset.link); // use `.querySelector(id)` to select the corresponding section
   // add smooth scrolling feature
+
  
   targetSection.scrollIntoView({
     behavior: 'smooth',
-    block: 'end',
-    inline: 'nearest',
+    block: 'end'
   });
 });
 
