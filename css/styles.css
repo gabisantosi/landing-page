@@ -88,7 +88,7 @@ li a {
 }
 
 li.your-active-class {
-  background-color: rgba(15, 28, 107, 0.603);
+  background-color: rgba(187, 58, 159, 0.603);
   transition: ease 0.8s all;
 }
 
@@ -100,12 +100,20 @@ li.your-active-class {
   color: #000;
 }
 
-.navbar__menu .menu__link:hover {
-  background: rgba(27, 36, 121, 0.603);
+.navbar__menu .menu__link:active {
+  background: rgba(187, 58, 159, 0.603);
   color: #fff;
   transition: ease 0.3s all;
-  cursor: pointer;
 }
+
+/* 
+  .navbar__menu .menu__link your-active-class {
+    background: rgba(27, 36, 121, 0.603);
+    color: #fff;
+    transition: ease 0.3s all;
+    
+} */
+
 
 /* Header Styles */
 .page__header {
