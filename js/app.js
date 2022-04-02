@@ -59,14 +59,13 @@ let buildNav = (sectionList, navBarList) => {
     const newElement = `<li data-link=${sec.getAttribute(
       'id'
     )} class="menu__link">
-              <a href="#${sec.getAttribute('id')}">${sec.getAttribute(
+               <a href="#${sec.getAttribute('id')}">${sec.getAttribute(
       'data-nav'
     )}</a>
-          </li>`;
+           </li>`;
     navBarList.insertAdjacentHTML('beforeend', newElement);
   }
 };
-
 
 // Add class 'your-active-class' to section when on viewport
 let setActiveSection = secList => {
@@ -76,7 +75,6 @@ let setActiveSection = secList => {
       document
         .querySelector(`[data-link="${sec.getAttribute('id')}"]`)
         .classList.toggle('your-active-class', true);
-        document.appendChild("your-active-class");
     } else {
       sec.classList.toggle('your-active-class', false);
       document
@@ -92,27 +90,46 @@ let setActiveSection = secList => {
  *
  */
 // Build menu
-window.onload = () => buildNav(sectionList, navBarList);
-
+window.onload = () => {
+  buildNav(sectionList, navBarList);
+};
 
 // Scroll smooth to section on link click
+const navLinks = document.querySelectorAll('#navbar__list a');
 
-navBarList.addEventListener('click', e => {
-  e.preventDefault(); // prevent the page from reloading (a default behavior when a link is clicked)
-  const parent = e.target.hasAttribute('data-link')
-    ? e.target
-    : e.target.parentElement; // get id from href value of the link
-  
+navLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault(); // prevent the page from reloading (a default behavior when a link is clicked)
+    const id = document.getElementById('link').href // get id from href value of the link
+    
     // get the reference to the corresponding section
-  const targetSection = document.getElementById(parent.dataset.link); // use `.querySelector(id)` to select the corresponding section
-  // add smooth scrolling feature
+    const targetSection = document.querySelector(id)// use `.querySelector(id)` to select the corresponding section
 
- 
-  targetSection.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end'
+        // add smooth scrolling feature like this-
+        targetSection.scrollIntoView({
+            behavior: "smooth",
+            block: "end"
+        });
   });
 });
+
+/*  navBarList.addEventListener('click', e => {
+  e.preventDefault(); // prevent the page from reloading (a default behavior when a link is clicked)
+   const sec = e.target.hasAttribute('data-link')
+     ? e.target
+     : e.target.id; // get id from href value of the link
+   
+     // get the reference to the corresponding section
+   const targetSection = document.getElementById(sec.dataset.link); // use `.querySelector(id)` to select the corresponding section
+   
+   // add smooth scrolling feature
+
+   targetSection.scrollIntoView({
+     behavior: 'smooth',
+     block: 'end',
+     
+   });
+ }); */
 
 // When the user scrolls down 30px from the top of the document, show the button
 function scrollFunction () {
