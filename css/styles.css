@@ -87,33 +87,26 @@ li a {
   text-decoration: none;
 }
 
-li.your-active-class {
-  background-color: rgba(187, 58, 159, 0.603);
-  transition: ease 0.8s all;
-}
-
 .navbar__menu .menu__link {
   display: block;
-  padding: 1em 0.5em;
+  padding: 1em;
   font-weight: bold;
   text-decoration: none;
   color: #000;
 }
 
 .navbar__menu .menu__link:active {
-  background: rgba(187, 58, 159, 0.603);
+  background: rgba(15, 28, 107, 0.603);
+  color: #fff;
+  transition: ease 0.3s all;
+  cursor: pointer;
+}
+
+.your-active-class {
+  background: rgba(15, 28, 107, 0.603);
   color: #fff;
   transition: ease 0.3s all;
 }
-
-/* 
-  .navbar__menu .menu__link your-active-class {
-    background: rgba(27, 36, 121, 0.603);
-    color: #fff;
-    transition: ease 0.3s all;
-    
-} */
-
 
 /* Header Styles */
 .page__header {

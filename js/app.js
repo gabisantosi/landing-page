@@ -33,24 +33,40 @@ const topButton = document.querySelector('#topBtn');
  *
  */
 
-//function to check if the section is in the viewport. If so, returns true. Otherwise, false.
-let isInViewport = sec => {
-  const rect = sec.getBoundingClientRect();
+// check if the element in on the viewport
+function isInViewport (element) {
+  const rect = element.getBoundingClientRect();
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
-    //  fallbacks if browser does not support the above
     rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
+      (window.innerHeight + rect.height ||
+        document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
-};
+}
+
+// When the user scrolls down 30px from the top of the document, show the button
+function scrollFunction () {
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    topButton.style.display = 'block';
+  } else {
+    topButton.style.display = 'none';
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction () {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 
 /**
  * End Helper Functions
  * Begin Main Functions
  *
  */
+
 // build the nav
 //function to build navbar
 let buildNav = (sectionList, navBarList) => {
@@ -68,86 +84,67 @@ let buildNav = (sectionList, navBarList) => {
 };
 
 // Add class 'your-active-class' to section when on viewport
+// loop through each section
 let setActiveSection = secList => {
-  for (const sec of secList) {
-    if (isInViewport(sec)) {
-      sec.classList.toggle('your-active-class', true);
-      document
-        .querySelector(`[data-link="${sec.getAttribute('id')}"]`)
-        .classList.toggle('your-active-class', true);
-    } else {
-      sec.classList.toggle('your-active-class', false);
-      document
-        .querySelector(`[data-link="${sec.getAttribute('id')}"]`)
-        .classList.toggle('your-active-class', false);
-    }
-  }
+  sectionList.forEach(section => {
+    // on window scroll
+    const sectionId = section.getAttribute('id');
+    const navbarSections = document.querySelectorAll('li');
+    window.addEventListener('scroll', e => {
+      // Check if is in viewport
+      if (isInViewport(section)) {
+        section.classList.add('your-active-class');
+        for (let i = 0; i < navbarSections.length; i++) {
+          const datalink = navbarSections[i].getAttribute('data-link');
+          if (datalink == sectionId) {
+            navbarSections[i].classList.add('your-active-class');
+          }
+        }
+        // otherwise, remove the class
+      } else {
+        section.classList.remove('your-active-class');
+        for (let i = 0; i < navbarSections.length; i++) {
+          const datalink = navbarSections[i].getAttribute('data-link');
+          if (datalink == sectionId) {
+            navbarSections[i].classList.remove('your-active-class');
+          }
+        }
+      }
+    });
+  });
 };
-
 /**
  * End Main Functions
  * Begin Events
  *
  */
 // Build menu
-window.onload = () => {
-  buildNav(sectionList, navBarList);
-};
+window.onload = () => buildNav(sectionList, navBarList);
 
 // Scroll smooth to section on link click
-const navLinks = document.querySelectorAll('#navbar__list a');
 
-navLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault(); // prevent the page from reloading (a default behavior when a link is clicked)
-    const id = document.getElementById('link').href // get id from href value of the link
-    
-    // get the reference to the corresponding section
-    const targetSection = document.querySelector(id)// use `.querySelector(id)` to select the corresponding section
+navBarList.addEventListener('click', e => {
+  e.preventDefault(); // prevent the page from reloading (a default behavior when a link is clicked)
+  const parent = e.target.hasAttribute('data-link')
+    ? e.target
+    : e.target.parentElement;
 
-        // add smooth scrolling feature like this-
-        targetSection.scrollIntoView({
-            behavior: "smooth",
-            block: "end"
-        });
+  // get the reference to the corresponding section
+  const targetSection = document.getElementById(parent.dataset.link);
+  // add smooth scrolling feature
+
+  targetSection.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
   });
 });
 
-/*  navBarList.addEventListener('click', e => {
-  e.preventDefault(); // prevent the page from reloading (a default behavior when a link is clicked)
-   const sec = e.target.hasAttribute('data-link')
-     ? e.target
-     : e.target.id; // get id from href value of the link
-   
-     // get the reference to the corresponding section
-   const targetSection = document.getElementById(sec.dataset.link); // use `.querySelector(id)` to select the corresponding section
-   
-   // add smooth scrolling feature
-
-   targetSection.scrollIntoView({
-     behavior: 'smooth',
-     block: 'end',
-     
-   });
- }); */
-
-// When the user scrolls down 30px from the top of the document, show the button
-function scrollFunction () {
-  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-    topButton.style.display = 'block';
-  } else {
-    topButton.style.display = 'none';
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction () {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
-
-// Set sections as active
+// Set sections as active and
 window.onscroll = () => {
   setActiveSection(sectionList);
   scrollFunction();
 };
+/**
+ * * End Main Functions
+ *
+ */
